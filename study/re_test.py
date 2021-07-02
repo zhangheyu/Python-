@@ -17,13 +17,27 @@ else:
     print("只允许录入英文字母、数字、_、-、.")
     print("match到非法字符:{}".format(test_str[0]))
 
-value = ''
-with open('ports.conf', 'rb') as fp:
-    value = fp.read()
+
+def read_file(fn):
+    with open(fn, 'rb') as fp:
+        return fp.read()
+
+
+def save_file(fn, content):
+    # print(content)
+    with open(fn, 'wb') as fp:
+        if type(content) == 'unicode':
+            content = content.encode('utf-8')
+        fp.write(content)
+
+
+value = read_file('ports.conf')
 # print('before:{}'.format(value))
 ret = re.sub('^Listen 20147\n', '', value.decode(),
              flags=re.DOTALL | re.MULTILINE)  # 替换value中符合'^Listen 20147\n'模式的字符串为空
 # print('after:', ret)
+save_file('ports.conf', ret.encode('utf-8'))
+
 
 
 def to_double(matched):

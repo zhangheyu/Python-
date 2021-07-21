@@ -31,13 +31,12 @@ def save_file(fn, content):
         fp.write(content)
 
 
-value = read_file('ports.conf')
+# value = read_file('ports.conf')
 # print('before:{}'.format(value))
-ret = re.sub('^Listen 20147\n', '', value.decode(),
-             flags=re.DOTALL | re.MULTILINE)  # 替换value中符合'^Listen 20147\n'模式的字符串为空
+# ret = re.sub('^Listen 20147\n', '', value.decode(),
+#              flags=re.DOTALL | re.MULTILINE)  # 替换value中符合'^Listen 20147\n'模式的字符串为空
 # print('after:', ret)
-save_file('ports.conf', ret.encode('utf-8'))
-
+# save_file('ports.conf', ret.encode('utf-8'))
 
 
 def to_double(matched):
@@ -48,4 +47,16 @@ def to_double(matched):
 
 ori_text = "price is 66 $"
 sub = re.sub(r'\d+', to_double, ori_text)
-print('sub:', sub)
+# print('sub:', sub)
+
+
+name_pattern = re.compile(r'^\w{1,64}$')
+value_pattern = re.compile(r'^\d+[mM]$')
+description_pattern = re.compile(r'.{0,50}$')
+match_name = name_pattern.match(input_psd)
+search_name = name_pattern.search(input_psd)
+
+if match_name:
+    print('name_pattern match:', match_name[0])
+if search_name:
+    print('name_pattern search:', search_name[0])

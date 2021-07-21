@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+    <title></title>
+    <meta name="Keywords" content="关键词">
+    <meta name="description" content="描述">
+</head>
+<body>
+<input type="text" name="makeupCo" id="makeupCo" class="makeinp" onfocus="setfocus(this)" oninput="setinput(this)" placeholder="请输入...">
+<select id="udr_user_id" name="udr_user_id" onchange="changeF(this)" style="display: none;">
+    <option value="">--请选择--</option>
+    <option value="1">产品1</option>
+    <option value="2">产品2</option>
+    <option value="3">产品3</option>
+    <option value="4">产品4</option>
+    <option value="5">产品5</option>
+    <option value="6">产品6</option>
+    <option value="7">产品7</option>
+    <option value="8">产品8</option>
+    <option value="9">优惠产品1</option>
+    <option value="10">优惠产品2</option>
+    <option value="11">优惠产品3</option>
+</select>
+<h2>动态提示的下拉框</h2>
+<hr>
+<form name=newform>
+<table>
+  <tr>
+    <td>请输入1或2或3或4或5进行测试：
+    <input list="aaa" style="width:100px" size=10  autocomplete="off">
+  <datalist id="aaa" style="width:100px" size=10 >
+    <option value="1">
+    <option value="12">
+    <option value="123">
+    <option value="1234">
+    <option value="2">
+    <option value="23">
+    <option value="234">
+    <option value="2345">
+  </datalist>
+</td>
+  </tr>
+ </form>
+</table>
+<script type="text/javascript" src="http://mat1.gtimg.com/libs/jquery/1.12.0/jquery.js"></script>
+<script type="text/javascript">
+    var TempArr = [];
+    var IdsArr = [];
+    $(function() {
+        $("#udr_user_id option").each(function(index,el){
+            TempArr[index] = $(this).text();
+            IdsArr[index] = $(this).val();
+        });
+        $(document).bind("click",function(e){
+            var e = e || window.event;
+            var elem = e.target || e.srcElement;
+            while(elem){
+                if (elem.id && (elem.id == "udr_user_id" || elem.id == "makeupCo")) {
+                    return;
+                }
+                elem = elem.parentNode;
+            }
+            $("#udr_user_id").css("display","none");
+        });
+    })
+
+    $("#makeupCo").blur(function(){
+        $("#makeupCo").val($("#udr_user_id").find("option:selected").text());
+    })
+
+    function changeF(this_){
+        $(this_).prev("input").val($(this_).find("option:selected").text());
+        $("#udr_user_id").css({"display":"none"});
+    }
+
+    function setfocus(this_){
+        $("#udr_user_id").css({"display":"","width":"100px"});
+    }
+
+    function setinput(this_){
+        var select = $("#udr_user_id");
+        select.html("");
+        for (i = 0; i < TempArr.length; i++) {
+            if (TempArr[i].indexOf(this_.value)>=0) {
+                var option = $("<option value="+IdsArr[i]+"></option>").text(TempArr[i]);
+                select.append(option);
+            }
+        }
+    }
+</script>

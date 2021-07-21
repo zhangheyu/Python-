@@ -24,3 +24,4 @@ for t in t_obj:
 print("--------all thread has finished")
 print("num:", num)   # 输出最后的num值是随机的不一定是100
 # 这种情况只能在python2.x 中才会出现的，python3.x里面没有这种现象
+# 通过加锁解决这个问题

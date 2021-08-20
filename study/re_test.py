@@ -60,3 +60,13 @@ if match_name:
     print('name_pattern match:', match_name[0])
 if search_name:
     print('name_pattern search:', search_name[0])
+
+
+print('请输入字母数字.-_中文name')
+name = input('input:')
+test_str = re.search(r"[^a-zA-Z0-9\.\-_\u4e00-\u9ffc]", input_psd)  # re.search 扫描整个字符串并返回第一个成功的匹配
+if test_str is None:
+    print("合法的name")
+else:
+    print("只允许录入字母数字._-中文")
+    print("search到非法字符:{}".format(test_str[0]))

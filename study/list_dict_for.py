@@ -21,3 +21,11 @@ for li in my_list:
     li['小明'] = 100
     print(my_list)
 
+print('==========='.center(80, '='))
+
+rule_ids = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+ids = [1]
+if ids not in rule_ids:
+    print('not in')
+else:
+    print('got it !!!')

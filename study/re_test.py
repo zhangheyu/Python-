@@ -70,3 +70,8 @@ if test_str is None:
 else:
     print("只允许录入字母数字._-中文")
     print("search到非法字符:{}".format(test_str[0]))
+
+test = input('test:')
+result = re.search(r'^test\S+', test)
+if result is None:
+    print('match fail')

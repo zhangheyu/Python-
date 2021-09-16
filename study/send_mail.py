@@ -148,5 +148,3 @@ if __name__ == '__main__':
         'message': 'The cpu current usage is 70%, greater than threshold 60%'
     }
     send_mail(mc, 'heyu.zhang@riversecurity.com, 502152574@qq.com', msg_info)
-
-
